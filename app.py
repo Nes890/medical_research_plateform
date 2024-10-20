@@ -2,13 +2,19 @@ import streamlit as st
 from Bio import Entrez
 import openai
 import urllib.parse
+import os
+from dotenv import load_dotenv
+
+# Charger les variables d'environnement
+load_dotenv()
 
 # Configurer l'API OpenAI
-openai.api_key = "sk-5R_cChuz2kt1kbrEUxDw4s4mcdFbg8oY269CPslgnFT3BlbkFJuc-RtFfyIp-4h6zZ3mO1NG5SL0r_GYOsr7drXkqYkA"
+
+openai_api_key = os.getenv("OPENAI_API_KEY")
 
 # Configurer l'API NCBI (PubMed)
-Entrez.email = "nesrinebenamor518@gmail.com"
-Entrez.api_key = "e9b86dbdeea24408a2ff5f7ec86eedb24e09"
+Entrez.email = os.getenv("NCBI_EMAIL")
+Entrez.api_key = os.getenv("NCBI_API_KEY")
 
 # Fonction pour rechercher des articles sur PubMed
 def search_pubmed(query):
